@@ -114,7 +114,7 @@ class TestMatrix {
     }
 
     static void testToString() {
-        String s = "[1.000 2.000 3.000]\n[4.000 5.000 6.000]\n";
+        String s = "[ 1.000  2.000  3.000]\n[ 4.000  5.000  6.000]\n";
         Assert.assertTrue(A.toString().equals(s));
     }
 
@@ -140,11 +140,11 @@ class TestMatrix {
         };
 
         Matrix T = new Matrix(t);
-        Assert.assertTrue(A.add(C).equals(T));
+        Assert.assertTrue(Math.add(A, C).equals(T));
 
         boolean exception_occurred = false;
         try {
-            A.add(D);
+            Math.add(A, D);
         } catch(IllegalArgumentException e) {
             exception_occurred = true;
         }
@@ -157,7 +157,7 @@ class TestMatrix {
             {1, 6, 4}
         };
         Matrix T = new Matrix(t);
-        Assert.assertTrue(A.subtract(C).equals(T));
+        Assert.assertTrue(Math.subtract(A, C).equals(T));
     }
 
     static void testMultiplyScalar() {
@@ -166,11 +166,11 @@ class TestMatrix {
             {-12, -15, -18}
         };
         Matrix T = new Matrix(t);
-        Assert.assertTrue(A.multiply(-3).equals(T));
+        Assert.assertTrue(Math.multiply(A, -3).equals(T));
     }
 
     static void testMultiplyElementWise() {
-        Matrix S = A.multiply(C);
+        Matrix S = Math.multiply(A, C);
         double[][] t = {
             {1, 4, -12},
             {12, -5, 12}
@@ -180,7 +180,7 @@ class TestMatrix {
 
         boolean exception_occurred = false;
         try {
-            A.multiply(D);
+            Math.multiply(A, D);
         } catch(IllegalArgumentException e) {
             exception_occurred = true;
         }
@@ -193,11 +193,11 @@ class TestMatrix {
             {-4, 51}
         };
         Matrix T = new Matrix(t);
-        Assert.assertTrue(A.product(D).equals(T));
+        Assert.assertTrue(Math.product(A, D).equals(T));
 
         boolean exception_occurred = false;
         try {
-            A.product(C);
+            Math.product(A, C);
         } catch(IllegalArgumentException e) {
             exception_occurred = true;
         }
@@ -210,7 +210,7 @@ class TestMatrix {
             {4./3, 5./3, 2}
         };
         Matrix T = new Matrix(t);
-        Assert.assertTrue(A.divide(3).equals(T));
+        Assert.assertTrue(Math.divide(A, 3).equals(T));
     }
 
     static void testSetRow() {

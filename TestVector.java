@@ -2,6 +2,8 @@ package matrix;
 
 import matrix.Vector;
 import matrix.Assert;
+import matrix.Math;
+
 import java.util.Arrays;
 
 
@@ -52,7 +54,7 @@ class TestVector {
         try {
             // index out of bounds error is expected
             A.get(-1);
-        } catch(IllegalArgumentException e) {
+        } catch(IndexOutOfBoundsException e) {
             exception_occurred = true;
         }
         Assert.assertTrue(exception_occurred);
@@ -61,7 +63,7 @@ class TestVector {
         try {
             // index out of bounds error is expected
             A.get(3);
-        } catch(IllegalArgumentException e) {
+        } catch(IndexOutOfBoundsException e) {
             exception_occurred = true;
         }
         Assert.assertTrue(exception_occurred);
@@ -79,7 +81,7 @@ class TestVector {
         try {
             // index out of bounds error is expected
             A.set(-1, 1);
-        } catch(IllegalArgumentException e) {
+        } catch(IndexOutOfBoundsException e) {
             exception_occurred = true;
         }
         Assert.assertTrue(exception_occurred);
@@ -88,24 +90,24 @@ class TestVector {
         try {
             // index out of bounds error is expected
             A.set(3, 1);
-        } catch(IllegalArgumentException e) {
+        } catch(IndexOutOfBoundsException e) {
             exception_occurred = true;
         }
         Assert.assertTrue(exception_occurred);
     }
 
     static void testToString() {
-        Assert.assertTrue(A.toString().equals("[1.000 2.000 3.000]\n"));
+        Assert.assertTrue(A.toString().equals("[ 1.000  2.000  3.000]\n"));
     }
 
     static void testAdd() {
-        Vector S = A.add(C);
+        Vector S = Math.add(A, C);
         Vector T = new Vector(new double[]{2, -1, 7});
         Assert.assertTrue(S.equals(T));
 
         boolean exception_occurred = false;
         try {
-            A.add(D);
+            Math.add(A, D);
         } catch(IllegalArgumentException e) {
             exception_occurred = true;
         }
@@ -113,19 +115,19 @@ class TestVector {
     }
 
     static void testMultiplyScalar() {
-        Vector S = A.multiply(3);
+        Vector S = Math.multiply(A, 3);
         Vector T = new Vector(new double[]{3, 6, 9});
         Assert.assertTrue(S.equals(T));
     }
 
     static void testMultiplyElementWise() {
-        Vector S = A.multiply(C);
+        Vector S = Math.multiply(A, C);
         Vector T = new Vector(new double[]{1, -6, 12});
         Assert.assertTrue(S.equals(T));
 
         boolean exception_occurred = false;
         try {
-            A.multiply(D);
+            Math.multiply(A, D);
         } catch(IllegalArgumentException e) {
             exception_occurred = true;
         }
@@ -138,11 +140,11 @@ class TestVector {
     }
 
     static void testProduct() {
-        Assert.assertTrue(A.product(C) == 7);
+        Assert.assertTrue(Math.product(A, C) == 7);
 
         boolean exception_occurred = false;
         try {
-            A.product(D);
+            Math.product(A, D);
         } catch(IllegalArgumentException e) {
             exception_occurred = true;
         }
@@ -150,13 +152,13 @@ class TestVector {
     }
 
     static void testSubtract() {
-        Vector S = A.subtract(C);
+        Vector S = Math.subtract(A, C);
         Vector T = new Vector(new double[]{0, 5, -1});
         Assert.assertTrue(S.equals(T));
     }
 
     static void testDivideByScalar() {
-        Vector S = A.divide(3);
+        Vector S = Math.divide(A, 3);
         Vector T = new Vector(new double[]{1/3., 2/3., 1});
         Assert.assertTrue(S.equals(T));
     }

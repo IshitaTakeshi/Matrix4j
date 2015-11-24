@@ -10,18 +10,21 @@ class LinearAlgebra {
                 "than the number of columns");
         }
 
+        System.out.println("Given matrix");
+        System.out.println(x);
+
         int nRows = x.nRows();
 
         //divide the 0th row by x[0, 0] so that x[0, 0] equals 1
-        x.setRow(0, x.row(0).divide(x.get(0, 0)));
+        x.setRow(0, Math.divide(x.row(0), x.get(0, 0)));
 
         for(int i = 0; i < nRows-1; i++) {
             for(int j = i+1; j < nRows; j++) {
                 //divide ith row by its 0th element
                 //x[0, :] * x[j, 0]
                 double r = x.get(j, i) / x.get(i, i);
-                Vector row = x.row(i).multiply(r);
-                x.setRow(j, x.row(j).subtract(row));
+                Vector row = Math.multiply(x.row(i), r);
+                x.setRow(j, Math.subtract(x.row(j), row));
             }
         }
 
@@ -33,7 +36,7 @@ class LinearAlgebra {
             if(x.get(i, i) == 0) {
                 continue;
             }
-            x.setRow(i, x.row(i).divide(x.get(i, i)));
+            x.setRow(i, Math.divide(x.row(i), x.get(i, i)));
         }
 
         System.out.println("Normalization of diagonal components");
@@ -46,23 +49,13 @@ class LinearAlgebra {
                     continue;
                 }
                 double r = x.get(j, i) / x.get(i, i);
-                Vector row = x.row(i).multiply(r);
-                x.setRow(j, x.row(j).subtract(row));
+                Vector row = Math.multiply(x.row(i), r);
+                x.setRow(j, Math.subtract(x.row(j), row));
             }
         }
 
         System.out.println("Backward elimination");
         System.out.println(x);
         return x;
-    }
-
-    public static void main(String[] args) {
-        Matrix x = new Matrix(new double[][]{
-            {2, 4, 2, 8},
-            {4, 10, 3, 17},
-            {3, 7, 1, 11}
-        });
-
-        gaussianElimination(x);
     }
 }
