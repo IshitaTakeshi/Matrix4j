@@ -114,7 +114,7 @@ class TestMatrix {
     }
 
     static void testToString() {
-        String s = "[ 1.000  2.000  3.000]\n[ 4.000  5.000  6.000]\n";
+        String s = "[  1.000   2.000   3.000]\n[  4.000   5.000   6.000]\n";
         Assert.assertTrue(A.toString().equals(s));
     }
 

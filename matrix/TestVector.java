@@ -97,7 +97,7 @@ class TestVector {
     }
 
     static void testToString() {
-        Assert.assertTrue(A.toString().equals("[ 1.000  2.000  3.000]\n"));
+        Assert.assertTrue(A.toString().equals("[  1.000   2.000   3.000]\n"));
     }
 
     static void testAdd() {

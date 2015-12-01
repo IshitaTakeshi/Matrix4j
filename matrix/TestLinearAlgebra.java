@@ -5,7 +5,7 @@ import matrix.LinearAlgebra;
 
 
 class TestLinearAlgebra {
-    public static void main(String args[]) {
+    static void gaussianElimination() {
         Matrix M, T;
 
         M = new Matrix(new double[][]{
@@ -51,5 +51,8 @@ class TestLinearAlgebra {
             exception_occurred = true;
         }
         Assert.assertTrue(exception_occurred);
+    }
+    public static void main(String args[]) {
+        gaussianElimination();
     }
 }

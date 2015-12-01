@@ -75,9 +75,9 @@ public class Vector {
 
         String s = "[";
         for(int i = 0; i < n-1; i++) {
-            s += String.format("% 4.3f ", this.get(i));
+            s += String.format("% 7.3f ", this.get(i));
         }
-        s += String.format("% 4.3f]\n", this.get(n-1));
+        s += String.format("% 7.3f]\n", this.get(n-1));
         return s;
     }
 
