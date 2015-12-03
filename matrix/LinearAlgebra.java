@@ -92,10 +92,6 @@ class LinearAlgebra {
 
         int nRows = x.nRows();
 
-        System.out.println("Divide the 0th row by x[0, 0] so that " +
-                           "x[0, 0] becomes 1");
-        System.out.println(x);
-
         for(int i = 0; i < nRows-1; i++) {
             for(int j = i+1; j < nRows; j++) {
                 //divide ith row by its 0th element
