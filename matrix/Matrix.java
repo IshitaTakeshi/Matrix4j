@@ -137,6 +137,7 @@ public class Matrix {
         }
         return sum;
     }
+
     //set array as a row at index
     public void setRow(int index, double[] row) {
         this.setRow(index, new Vector(row));

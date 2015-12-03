@@ -3,7 +3,7 @@ package matrix;
 
 //exhibit ith row and jth column of x as x[i, j] in comments
 class LinearAlgebra {
-    static Matrix gaussianElimination(Matrix x) {
+    static Matrix gaussJordanElimination(Matrix x) {
         if(x.nRows() > x.nColumns()) {
             throw new IllegalArgumentException(
                 "The number of rows must be larger " +
@@ -76,6 +76,67 @@ class LinearAlgebra {
 
         System.out.println("The result of backward elimination");
         System.out.println(x);
+        return x;
+    }
+
+
+    static Matrix gaussianElimination(Matrix x) {
+        if(x.nRows() > x.nColumns()) {
+            throw new IllegalArgumentException(
+                "The number of rows must be larger " +
+                "than the number of columns");
+        }
+
+        System.out.println("Given matrix");
+        System.out.println(x);
+
+        int nRows = x.nRows();
+
+        System.out.println("Divide the 0th row by x[0, 0] so that " +
+                           "x[0, 0] becomes 1");
+        System.out.println(x);
+
+        for(int i = 0; i < nRows-1; i++) {
+            for(int j = i+1; j < nRows; j++) {
+                //divide ith row by its 0th element
+                //x[0, :] * x[j, 0]
+                double r = x.get(j, i) / x.get(i, i);
+                Vector row = Math.multiply(x.row(i), r);
+                x.setRow(j, Math.subtract(x.row(j), row));
+
+                System.out.println("Compare the " + Format.ordinal(i) +
+                                   " row and the " + Format.ordinal(j) +
+                                   " row");
+                System.out.println("Multiply the " + Format.ordinal(i) +
+                                   " row by " + r + " and subtract from the " +
+                                   Format.ordinal(j) + " row");
+                System.out.println(x);
+            }
+        }
+
+        System.out.println("The result of forward elimination");
+        System.out.println(x);
+
+        //backward elimination
+        for(int i = nRows-1; i >= 0; i--) {
+            for(int j = i-1; j >= 0; j--) {
+                if(x.get(i, i) == 0) {
+                    continue;
+                }
+                double r = x.get(j, i) / x.get(i, i);
+                Vector row = Math.multiply(x.row(i), r);
+                x.setRow(j, Math.subtract(x.row(j), row));
+            }
+        }
+
+        //normalize diagonal components
+        for(int i = 0; i < nRows; i++) {
+            if(x.get(i, i) == 0) {
+                continue;
+            }
+            x.setRow(i, Math.divide(x.row(i), x.get(i, i)));
+        }
+
         return x;
     }
 }

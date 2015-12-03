@@ -20,4 +20,4 @@ all:
 	$(JC) $(JFLAGS) $(CLASSES)
 
 clean:
-	$(RM) *.class
+	rm matrix/*.class
