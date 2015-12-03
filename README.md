@@ -16,9 +16,7 @@ java matrix.TestLinearAlgebra
 ### 各クラスのテスト
 
 ```
-java matrix.TestMatrix
-java matrix.TestVector
-java matrix.TestArrayUtils
+make test
 ```
 
 ### テストについて

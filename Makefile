@@ -1,5 +1,7 @@
 JFLAGS =
 JC = javac
+JAVA = java
+
 .SUFFIXES: .java .class
 
 CLASSES = \
@@ -18,6 +20,11 @@ default: all
 
 all:
 	$(JC) $(JFLAGS) $(CLASSES)
+
+test:
+	$(JAVA) matrix.TestMatrix
+	$(JAVA) matrix.TestVector
+	$(JAVA) matrix.TestArrayUtils
 
 clean:
 	rm matrix/*.class
