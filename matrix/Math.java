@@ -71,6 +71,10 @@ class Math {
         return A.sum();
     }
 
+    public static double sum(Matrix A) {
+        return A.sum();
+    }
+
     public static Matrix add(Matrix A, Matrix B) {
         if(!(A.nRows() == B.nRows() &&
              A.nColumns() == B.nColumns())) {

@@ -131,6 +131,8 @@ class TestMatrix {
     static void testSum() {
         Assert.assertTrue(A.sum() == 21);
         Assert.assertTrue(D.sum() == 9);
+        Assert.assertTrue(Math.sum(A) == 21);
+        Assert.assertTrue(Math.sum(D) == 9);
     }
 
     static void testAdd() {

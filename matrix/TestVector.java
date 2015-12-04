@@ -137,6 +137,8 @@ class TestVector {
     static void testSum() {
         Assert.assertTrue(A.sum() == 6);
         Assert.assertTrue(D.sum() == 4);
+        Assert.assertTrue(Math.sum(A) == 6);
+        Assert.assertTrue(Math.sum(D) == 4);
     }
 
     static void testProduct() {
