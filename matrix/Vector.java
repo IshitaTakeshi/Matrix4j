@@ -1,5 +1,6 @@
 package matrix;
 
+
 public class Vector {
     private double[] vector;
 
@@ -37,6 +38,28 @@ public class Vector {
     //the number of elements
     public int length() {
         return this.vector.length;
+    }
+
+    public double max() {
+        double max = Double.NEGATIVE_INFINITY;
+        for(double e: this.vector) {
+            if(e > max) {
+                max = e;
+            }
+        }
+        return max;
+    }
+
+    public double argmax() {
+        double max = Double.NEGATIVE_INFINITY;
+        int argmax = 0;
+        for(int i = 0; i < this.length(); i++) {
+            double e = this.get(i);
+            if(e > max) {
+                argmax = i;
+            }
+        }
+        return argmax;
     }
 
     public double sum() {

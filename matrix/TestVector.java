@@ -141,6 +141,20 @@ class TestVector {
         Assert.assertTrue(Math.sum(D) == 4);
     }
 
+    static void testMax() {
+        Assert.assertTrue(A.max() == 3);
+        Assert.assertTrue(D.max() == 5);
+        Assert.assertTrue(Math.max(A) == 3);
+        Assert.assertTrue(Math.max(D) == 5);
+    }
+
+    static void testArgmax() {
+        Assert.assertTrue(A.argmax() == 2);
+        Assert.assertTrue(D.argmax() == 3);
+        Assert.assertTrue(Math.argmax(A) == 2);
+        Assert.assertTrue(Math.argmax(D) == 3);
+    }
+
     static void testProduct() {
         Assert.assertTrue(Math.product(A, C) == 7);
 
@@ -177,6 +191,8 @@ class TestVector {
         testMultiplyScalar();
         testMultiplyElementWise();
         testSum();
+        testMax();
+        testArgmax();
         testProduct();
         testSubtract();
         testDivideByScalar();

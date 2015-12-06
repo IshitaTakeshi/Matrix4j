@@ -71,6 +71,14 @@ class Math {
         return A.sum();
     }
 
+    public static double max(Vector A) {
+        return A.max();
+    }
+
+    public static double argmax(Vector A) {
+        return A.argmax();
+    }
+
     public static double sum(Matrix A) {
         return A.sum();
     }
