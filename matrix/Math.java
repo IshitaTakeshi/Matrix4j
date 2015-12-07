@@ -67,19 +67,19 @@ class Math {
         return multiply(A, 1/r);
     }
 
-    public static double sum(Vector A) {
-        return A.sum();
-    }
-
     public static double max(Vector A) {
         return A.max();
     }
 
-    public static double argmax(Vector A) {
+    public static int argmax(Vector A) {
         return A.argmax();
     }
 
-    public static double sum(Matrix A) {
+    public static Vector abs(Vector A) {
+        return A.abs();
+    }
+
+    public static double sum(Vector A) {
         return A.sum();
     }
 
@@ -163,4 +163,9 @@ class Math {
     //Division requires an inverse matrix
     //public static Matrix divide(Matrix B) {
     //}
+
+    public static double sum(Matrix A) {
+        return A.sum();
+    }
+
 }

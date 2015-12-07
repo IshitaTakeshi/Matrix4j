@@ -21,8 +21,8 @@ public class Vector {
     }
 
     //create an empty vector
-    public Vector(int size) {
-        this.vector = new double[size];
+    public Vector(int length) {
+        this.vector = new double[length];
     }
 
     //copy the self object
@@ -50,16 +50,26 @@ public class Vector {
         return max;
     }
 
-    public double argmax() {
+    public int argmax() {
         double max = Double.NEGATIVE_INFINITY;
         int argmax = 0;
         for(int i = 0; i < this.length(); i++) {
             double e = this.get(i);
             if(e > max) {
                 argmax = i;
+                max = e;
             }
         }
         return argmax;
+    }
+
+    public Vector abs() {
+        int length = this.length();
+        double[] abs = new double[length];
+        for(int i = 0; i < length; i++) {
+            abs[i] = java.lang.Math.abs(this.get(i));
+        }
+        return new Vector(abs);
     }
 
     public double sum() {

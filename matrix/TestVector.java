@@ -12,11 +12,13 @@ class TestVector {
     static final double[] b = {1, 2, 3};
     static final double[] c = {1, -3, 4};
     static final double[] d = {1, 2, -4, 5};
+    static final double[] e = {1, 6, -7, 2};
 
     static final Vector A = new Vector(a);
     static final Vector B = new Vector(b);
     static final Vector C = new Vector(c);
     static final Vector D = new Vector(d);
+    static final Vector E = new Vector(e);
 
     //TODO
     static void testConstructor() {
@@ -134,25 +136,38 @@ class TestVector {
         Assert.assertTrue(exception_occurred);
     }
 
-    static void testSum() {
-        Assert.assertTrue(A.sum() == 6);
-        Assert.assertTrue(D.sum() == 4);
-        Assert.assertTrue(Math.sum(A) == 6);
-        Assert.assertTrue(Math.sum(D) == 4);
-    }
-
     static void testMax() {
         Assert.assertTrue(A.max() == 3);
         Assert.assertTrue(D.max() == 5);
+        Assert.assertTrue(E.max() == 6);
         Assert.assertTrue(Math.max(A) == 3);
         Assert.assertTrue(Math.max(D) == 5);
+        Assert.assertTrue(Math.max(E) == 6);
     }
 
     static void testArgmax() {
         Assert.assertTrue(A.argmax() == 2);
         Assert.assertTrue(D.argmax() == 3);
+        Assert.assertTrue(E.argmax() == 1);
         Assert.assertTrue(Math.argmax(A) == 2);
         Assert.assertTrue(Math.argmax(D) == 3);
+        Assert.assertTrue(Math.argmax(E) == 1);
+    }
+
+    static void testAbs() {
+        Vector Aexpected = new Vector(new double[]{1, 2, 3});
+        Vector Dexpected = new Vector(new double[]{1, 2, 4, 5});
+        Assert.assertTrue(A.abs().equals(Aexpected));
+        Assert.assertTrue(D.abs().equals(Dexpected));
+        Assert.assertTrue(Math.abs(A).equals(Aexpected));
+        Assert.assertTrue(Math.abs(D).equals(Dexpected));
+    }
+
+    static void testSum() {
+        Assert.assertTrue(A.sum() == 6);
+        Assert.assertTrue(D.sum() == 4);
+        Assert.assertTrue(Math.sum(A) == 6);
+        Assert.assertTrue(Math.sum(D) == 4);
     }
 
     static void testProduct() {
@@ -190,9 +205,10 @@ class TestVector {
         testAdd();
         testMultiplyScalar();
         testMultiplyElementWise();
-        testSum();
         testMax();
         testArgmax();
+        testSum();
+        testAbs();
         testProduct();
         testSubtract();
         testDivideByScalar();
