@@ -5,102 +5,69 @@ import matrix.LinearAlgebra;
 
 
 class TestLinearAlgebra {
+    private static final Matrix A = new Matrix(new double[][]{
+        {2, 4, 2, 8},
+        {4, 10, 3, 17},
+        {3, 7, 1, 11}
+    });
+
+    private static final Matrix B = new Matrix(new double[][]{
+        {1, 2, 0, -1},
+        {3, 7, -1, 3},
+        {2, 2, 1, 2}
+    });
+
+    private static final Matrix Aexpected = new Matrix(new double[][]{
+        {1, 0, 0, 1},
+        {0, 1, 0, 1},
+        {0, 0, 1, 1}
+    });
+
+    private static final Matrix Bexpected = new Matrix(new double[][]{
+        {1, 0, 0, 19},
+        {0, 1, 0, -10},
+        {0, 0, 1, -16}
+    });
+
+    private static final Matrix T = new Matrix(new double[][]{
+        {1, 4},
+        {4, 1},
+        {2, 3}
+    });
+
     static void testGaussJordanElimination() {
-        Matrix M, T;
+        Matrix M;
+        M = LinearAlgebra.gaussJordanElimination(A.copy());
+        Assert.assertTrue(M.equals(Aexpected));
 
-        M = new Matrix(new double[][]{
-            {2, 4, 2, 8},
-            {4, 10, 3, 17},
-            {3, 7, 1, 11}
-        });
-
-        T = new Matrix(new double[][]{
-            {1, 0, 0, 1},
-            {0, 1, 0, 1},
-            {0, 0, 1, 1}
-        });
-
-        M = LinearAlgebra.gaussJordanElimination(M);
-        Assert.assertTrue(M.equals(T));
-
-        M = new Matrix(new double[][]{
-            {1, 2, 0, -1},
-            {3, 7, -1, 3},
-            {2, 2, 1, 2}
-        });
-
-        T = new Matrix(new double[][]{
-            {1, 0, 0, 19},
-            {0, 1, 0, -10},
-            {0, 0, 1, -16}
-        });
-
-        M = LinearAlgebra.gaussJordanElimination(M);
-        Assert.assertTrue(M.equals(T));
-
-        M = new Matrix(new double[][]{
-            {1, 4},
-            {4, 1},
-            {2, 3}
-        });
+        M = LinearAlgebra.gaussJordanElimination(B.copy());
+        Assert.assertTrue(M.equals(Bexpected));
 
         boolean exception_occurred= false;
         try {
-            M = LinearAlgebra.gaussJordanElimination(M);
+            LinearAlgebra.gaussJordanElimination(T.copy());
         } catch(IllegalArgumentException e) {
             exception_occurred = true;
         }
         Assert.assertTrue(exception_occurred);
     }
 
-    static void testgaussianElimination() {
-        Matrix M, T;
+    static void testGaussianElimination() {
+        Matrix M;
+        M = LinearAlgebra.gaussianElimination(A.copy());
+        Assert.assertTrue(M.equals(Aexpected));
 
-        M = new Matrix(new double[][]{
-            {2, 4, 2, 8},
-            {4, 10, 3, 17},
-            {3, 7, 1, 11}
-        });
-
-        T = new Matrix(new double[][]{
-            {1, 0, 0, 1},
-            {0, 1, 0, 1},
-            {0, 0, 1, 1}
-        });
-
-        M = LinearAlgebra.gaussianElimination(M);
-        Assert.assertTrue(M.equals(T));
-
-        M = new Matrix(new double[][]{
-            {1, 2, 0, -1},
-            {3, 7, -1, 3},
-            {2, 2, 1, 2}
-        });
-
-        T = new Matrix(new double[][]{
-            {1, 0, 0, 19},
-            {0, 1, 0, -10},
-            {0, 0, 1, -16}
-        });
-
-        M = LinearAlgebra.gaussianElimination(M);
-        Assert.assertTrue(M.equals(T));
-
-        M = new Matrix(new double[][]{
-            {1, 4},
-            {4, 1},
-            {2, 3}
-        });
+        M = LinearAlgebra.gaussianElimination(B.copy());
+        Assert.assertTrue(M.equals(Bexpected));
 
         boolean exception_occurred= false;
         try {
-            M = LinearAlgebra.gaussianElimination(M);
+            LinearAlgebra.gaussianElimination(T.copy());
         } catch(IllegalArgumentException e) {
             exception_occurred = true;
         }
         Assert.assertTrue(exception_occurred);
     }
-
 
     static void runHomework() {
         Matrix M = new Matrix(new double[][]{
@@ -117,7 +84,8 @@ class TestLinearAlgebra {
     }
 
     public static void main(String args[]) {
-        //testgaussianElimination();
+        testGaussJordanElimination();
+        testGaussianElimination();
         runHomework();
     }
 }
