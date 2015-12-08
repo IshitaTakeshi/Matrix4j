@@ -1,5 +1,7 @@
 package matrix;
 
+import java.util.Arrays;
+
 
 public class Vector {
     private double[] vector;
@@ -41,6 +43,11 @@ public class Vector {
     }
 
     public double max() {
+        if(this.length() == 0) {
+            throw new IllegalArgumentException(
+                "Max for an empty vector can not be defined.");
+        }
+
         double max = Double.NEGATIVE_INFINITY;
         for(double e: this.vector) {
             if(e > max) {
@@ -51,6 +58,11 @@ public class Vector {
     }
 
     public int argmax() {
+        if(this.length() == 0) {
+            throw new IllegalArgumentException(
+                "Argmax for an empty vector can not be defined.");
+        }
+
         double max = Double.NEGATIVE_INFINITY;
         int argmax = 0;
         for(int i = 0; i < this.length(); i++) {
@@ -72,6 +84,12 @@ public class Vector {
         return new Vector(abs);
     }
 
+    public Vector slice(int begin, int end) {
+        throwExceptionIfRangeOutOfBounds(begin, end);
+        double[] sliced = Arrays.copyOfRange(this.vector, begin, end);
+        return new Vector(sliced);
+    }
+
     public double sum() {
         double s = 0;
         for(double e: this.vector) {
@@ -80,37 +98,47 @@ public class Vector {
         return s;
     }
 
+    private void throwExceptionIfRangeOutOfBounds(int begin, int end) {
+        if(begin < 0 || this.length() < end) {
+            throw new IndexOutOfBoundsException(
+                String.format("Range [%d, %d) is out of bounds.", begin, end));
+        }
+    }
     //throw an exception if either of indices is out of bounds
-    private void throwExceptionIfOutOfBounds(int index) {
+    private void throwExceptionIfIndexOutOfBounds(int index) {
         int length = this.length();
         if(index < 0 || length <= index) {
             throw new IndexOutOfBoundsException(
                 String.format(
-                    "index %d is out of bounds for vector with length %d",
+                    "Index %d is out of bounds for vector with length %d.",
                     length, length));
         }
     }
 
     //return an element at index
     public double get(int index) {
-        throwExceptionIfOutOfBounds(index);
+        throwExceptionIfIndexOutOfBounds(index);
         return this.vector[index];
     }
 
     // set element at index
     public void set(int index, double e) {
-        throwExceptionIfOutOfBounds(index);
+        throwExceptionIfIndexOutOfBounds(index);
         this.vector[index] = e;
     }
 
     public String toString() {
         int n = this.length();
 
+        if(n == 0) {
+            return "[]";
+        }
+
         String s = "[";
         for(int i = 0; i < n-1; i++) {
             s += String.format("% 7.3f ", this.get(i));
         }
-        s += String.format("% 7.3f]\n", this.get(n-1));
+        s += String.format("% 7.3f]", this.get(n-1));
         return s;
     }
 

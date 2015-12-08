@@ -2,9 +2,8 @@ package matrix;
 
 import matrix.Vector;
 import matrix.Assert;
+import matrix.Array;
 import matrix.Math;
-
-import java.util.Arrays;
 
 
 class TestVector {
@@ -19,6 +18,7 @@ class TestVector {
     static final Vector C = new Vector(c);
     static final Vector D = new Vector(d);
     static final Vector E = new Vector(e);
+    static final Vector empty = new Vector(new double[]{});
 
     //TODO
     static void testConstructor() {
@@ -99,7 +99,8 @@ class TestVector {
     }
 
     static void testToString() {
-        Assert.assertTrue(A.toString().equals("[  1.000   2.000   3.000]\n"));
+        Assert.assertTrue(A.toString().equals("[  1.000   2.000   3.000]"));
+        Assert.assertTrue(empty.toString().equals("[]"));
     }
 
     static void testAdd() {
@@ -143,6 +144,14 @@ class TestVector {
         Assert.assertTrue(Math.max(A) == 3);
         Assert.assertTrue(Math.max(D) == 5);
         Assert.assertTrue(Math.max(E) == 6);
+
+        boolean exception_occurred = false;
+        try {
+            empty.max();
+        } catch(IllegalArgumentException e) {
+            exception_occurred = true;
+        }
+        Assert.assertTrue(exception_occurred);
     }
 
     static void testArgmax() {
@@ -152,6 +161,14 @@ class TestVector {
         Assert.assertTrue(Math.argmax(A) == 2);
         Assert.assertTrue(Math.argmax(D) == 3);
         Assert.assertTrue(Math.argmax(E) == 1);
+
+        boolean exception_occurred = false;
+        try {
+            empty.argmax();
+        } catch(IllegalArgumentException e) {
+            exception_occurred = true;
+        }
+        Assert.assertTrue(exception_occurred);
     }
 
     static void testAbs() {
@@ -161,6 +178,44 @@ class TestVector {
         Assert.assertTrue(D.abs().equals(Dexpected));
         Assert.assertTrue(Math.abs(A).equals(Aexpected));
         Assert.assertTrue(Math.abs(D).equals(Dexpected));
+    }
+
+    static void testSlice() {
+        Vector expected;
+
+        Assert.assertTrue(A.slice(0, A.length()).equals(A));
+        Assert.assertTrue(Array.slice(A, 0, A.length()).equals(A));
+
+        expected = new Vector(new double[]{2, -4});
+        Assert.assertTrue(D.slice(1, 3).equals(expected));
+        Assert.assertTrue(Array.slice(D, 1, 3).equals(expected));
+
+        Assert.assertTrue(Array.slice(D, 2, 2).equals(empty));
+
+        boolean exception_occurred;
+        exception_occurred = false;
+        try {
+            Array.slice(A, -1, 1);
+        } catch(IndexOutOfBoundsException e) {
+            exception_occurred = true;
+        }
+        Assert.assertTrue(exception_occurred);
+
+        exception_occurred = false;
+        try {
+            Array.slice(A, 2, A.length()+1);
+        } catch(IndexOutOfBoundsException e) {
+            exception_occurred = true;
+        }
+        Assert.assertTrue(exception_occurred);
+
+        exception_occurred = false;
+        try {
+            Array.slice(A, 2, 1);
+        } catch(IllegalArgumentException e) {
+            exception_occurred = true;
+        }
+        Assert.assertTrue(exception_occurred);
     }
 
     static void testSum() {
@@ -209,6 +264,7 @@ class TestVector {
         testArgmax();
         testSum();
         testAbs();
+        testSlice();
         testProduct();
         testSubtract();
         testDivideByScalar();

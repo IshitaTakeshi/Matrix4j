@@ -107,10 +107,14 @@ public class Matrix {
     }
 
     public String toString() {
+        int nRows = this.nRows();
+
         String s = "";
-        for(Vector v : this.matrix) {
-            s += v.toString();
+        for(int i = 0; i < nRows-1; i++) {
+            s += this.row(i).toString();
+            s += "\n";
         }
+        s += this.row(nRows-1).toString();
         return s;
     }
 
