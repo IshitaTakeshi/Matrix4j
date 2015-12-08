@@ -1,6 +1,7 @@
 
 ## 実行方法
 ### ガウス消去法
+
 ```
 make
 java matrix.TestLinearAlgebra
