@@ -69,14 +69,31 @@ class TestLinearAlgebra {
         Assert.assertTrue(exception_occurred);
     }
 
+    static void testPartialPivotingElimination() {
+        Matrix M;
+        M = LinearAlgebra.partialPivotingElimination(A.copy());
+        Assert.assertTrue(M.equals(Aexpected));
+
+        M = LinearAlgebra.partialPivotingElimination(B.copy());
+        Assert.assertTrue(M.equals(Bexpected));
+
+        boolean exception_occurred= false;
+        try {
+            LinearAlgebra.partialPivotingElimination(T.copy());
+        } catch(IllegalArgumentException e) {
+            exception_occurred = true;
+        }
+        Assert.assertTrue(exception_occurred);
+    }
+
     static void runHomework() {
         Matrix M = new Matrix(new double[][]{
             {1, 2, 3, 4, 22},
             {-3, 3, -2, 2, -14},
-            {6, -2, 4, -8, 8},
-            {3, -5, 1, 1, 23}
+            {3, -5, 1, 1, 23},
+            {6, -2, 4, -8, 8}
         });
-        M = LinearAlgebra.gaussianElimination(M);
+        M = LinearAlgebra.partialPivotingElimination(M);
         System.out.println("A = " + M.get(0, 4));
         System.out.println("B = " + M.get(1, 4));
         System.out.println("C = " + M.get(2, 4));
@@ -84,8 +101,9 @@ class TestLinearAlgebra {
     }
 
     public static void main(String args[]) {
-        testGaussJordanElimination();
-        testGaussianElimination();
+        //testGaussJordanElimination();
+        //testGaussianElimination();
+        //testPartialPivotingElimination();
         runHomework();
     }
 }

@@ -1,4 +1,5 @@
 package matrix;
+import matrix.Format;
 
 
 //exhibit ith row and jth column of x as x[i, j] in comments
@@ -95,10 +96,27 @@ class LinearAlgebra {
         }
     }
 
+    static Matrix swapRows(Matrix x, int i, int j) {
+        Vector r = x.row(i);
+        x.setRow(i, x.row(j));
+        x.setRow(j, r);
+        return x;
+    }
+
     static Matrix pivotingForwardElimination(Matrix x) {
         //i: column index
         //j: row index
         for(int i = 0; i < x.nRows()-1; i++) {
+            //x[i, i] is the pivot
+            //swap with the index of the max row in the ith column
+
+            int argmax = x.column(i).slice(i, x.nRows()).abs().argmax();
+            x = swapRows(x, i+argmax, i);
+
+            System.out.println("Swap " + Format.ordinal(i+argmax) + " row and " +
+                               Format.ordinal(i) + " row");
+            System.out.println(x + "\n");
+
             for(int j = i+1; j < x.nRows(); j++) {
                 double r = x.get(j, i) / x.get(i, i);
                 Vector row = Math.multiply(x.row(i), r);
@@ -110,8 +128,9 @@ class LinearAlgebra {
                 System.out.println("Multiply the " + Format.ordinal(i) +
                                    " row by " + r + " and subtract from the " +
                                    Format.ordinal(j) + " row");
-                System.out.println(x);
+                System.out.println(x + "\n");
             }
+            System.out.println("\n");
         }
         return x;
     }
@@ -120,12 +139,13 @@ class LinearAlgebra {
         throwExceptionIfInvalidShape(x);
 
         System.out.println("Given matrix");
-        System.out.println(x);
-
-        System.out.println("The result of forward elimination");
-        System.out.println(x);
+        System.out.println(x + "\n\n");
 
         x = pivotingForwardElimination(x);
+
+        System.out.println("The result of forward elimination");
+        System.out.println(x + "\n");
+
         x = backwardElimination(x);
         x = normalizeDiagonalComponents(x);
 
