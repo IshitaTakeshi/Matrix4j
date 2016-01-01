@@ -118,6 +118,11 @@ class LinearAlgebra {
             System.out.println(x + "\n");
 
             for(int j = i+1; j < x.nRows(); j++) {
+                if(x.get(i, i) == 0) {
+                    //Avoid zero division error
+                    continue;
+                }
+
                 double r = x.get(j, i) / x.get(i, i);
                 Vector row = Math.multiply(x.row(i), r);
                 x.setRow(j, Math.subtract(x.row(j), row));
