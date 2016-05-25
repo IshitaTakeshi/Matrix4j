@@ -1,10 +1,11 @@
-package matrix4j.core;
+package matrix4j.dct;
 
 import java.lang.Math;
 import static matrix4j.core.Math.ones;
 import static matrix4j.core.Math.multiply;
 import static matrix4j.core.Math.product;
 import matrix4j.core.Matrix;
+import matrix4j.core.Vector;
 
 
 public class DCT {
@@ -17,6 +18,7 @@ public class DCT {
         return product(c, m);
     }
 
+    //2d DCT
     public static Matrix dct(Matrix m) {
         if(m.nRows() != m.nColumns()) {
             throw new IllegalArgumentException("Matrix must be square");

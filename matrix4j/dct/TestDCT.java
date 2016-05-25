@@ -1,8 +1,9 @@
-package matrix4j.core;
+package matrix4j.dct;
 
+import matrix4j.core.Math;
 import matrix4j.core.Matrix;
-import matrix4j.core.DCTMatrix;
-import matrix4j.core.DCT;
+import matrix4j.dct.DCTMatrix;
+import matrix4j.dct.DCT;
 import matrix4j.core.Assert;
 
 
@@ -38,7 +39,7 @@ class TestDCT {
         System.out.println(r + "\n");
     }
 
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         testDCTMatrix();
         test2dDCT();
     }

@@ -105,13 +105,13 @@ public class Matrix {
     }
 
     //get an element at the ith row, jth column
-    double get(int i, int j) {
+    public double get(int i, int j) {
         throwIfOutOfBounds(i, j);
         return this.matrix[i].get(j);
     }
 
     //set an element to the ith row, jth column
-    void set(int i, int j, double e) {
+    public void set(int i, int j, double e) {
         throwIfOutOfBounds(i, j);
         this.matrix[i].set(j, e);
     }
@@ -173,7 +173,10 @@ public class Matrix {
     public void setColumn(int index, Vector column) {
         throwIfColumnIndexOutOfBounds(index);
         if(column.length() != this.nRows()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(
+                "Column length doesn't match." +
+                "Column length is " + column.length() + " " +
+                "but the number of matrix rows is " + this.nRows());
         }
 
         for(int i = 0; i < this.nRows(); i++) {

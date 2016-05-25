@@ -1,7 +1,7 @@
 package matrix4j.core;
 
 
-class Math {
+public class Math {
     public static Vector add(Vector A, Vector B) {
         if(A.length() != B.length()) {
             throw new IllegalArgumentException();

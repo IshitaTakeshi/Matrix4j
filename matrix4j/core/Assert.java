@@ -8,8 +8,8 @@ class AssertError extends Error {
 }
 
 
-class Assert {
-    static void assertTrue(boolean e) {
+public class Assert {
+    public static void assertTrue(boolean e) {
         if(!e) {
             throw new AssertError();
         }
