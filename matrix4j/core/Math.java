@@ -1,4 +1,4 @@
-package matrix;
+package matrix4j.core;
 
 
 class Math {
@@ -81,6 +81,15 @@ class Math {
 
     public static double sum(Vector A) {
         return A.sum();
+    }
+
+    //returns a vector of given length, filled with ones
+    public static Vector ones(int length) {
+        double[] ones = new double[length];
+        for(int i = 0; i < length; i++) {
+            ones[i] = 1;
+        }
+        return new Vector(ones);
     }
 
     public static Matrix add(Matrix A, Matrix B) {
@@ -167,5 +176,4 @@ class Math {
     public static double sum(Matrix A) {
         return A.sum();
     }
-
 }

@@ -1,4 +1,4 @@
-package matrix;
+package matrix4j.core;
 
 
 class AssertError extends Error {

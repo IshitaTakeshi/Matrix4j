@@ -1,7 +1,7 @@
-package matrix;
+package matrix4j.core;
 
-import matrix.Matrix;
-import matrix.LinearAlgebra;
+import matrix4j.core.Matrix;
+import matrix4j.core.LinearAlgebra;
 
 
 class TestLinearAlgebra {
@@ -43,7 +43,7 @@ class TestLinearAlgebra {
         M = LinearAlgebra.gaussJordanElimination(B.copy());
         Assert.assertTrue(M.equals(Bexpected));
 
-        boolean exception_occurred= false;
+        boolean exception_occurred = false;
         try {
             LinearAlgebra.gaussJordanElimination(T.copy());
         } catch(IllegalArgumentException e) {
@@ -60,7 +60,7 @@ class TestLinearAlgebra {
         M = LinearAlgebra.gaussianElimination(B.copy());
         Assert.assertTrue(M.equals(Bexpected));
 
-        boolean exception_occurred= false;
+        boolean exception_occurred = false;
         try {
             LinearAlgebra.gaussianElimination(T.copy());
         } catch(IllegalArgumentException e) {
@@ -77,7 +77,7 @@ class TestLinearAlgebra {
         M = LinearAlgebra.partialPivotingElimination(B.copy());
         Assert.assertTrue(M.equals(Bexpected));
 
-        boolean exception_occurred= false;
+        boolean exception_occurred = false;
         try {
             LinearAlgebra.partialPivotingElimination(T.copy());
         } catch(IllegalArgumentException e) {

@@ -1,7 +1,7 @@
-package matrix;
+package matrix4j.core;
 
-import matrix.ArrayUtils;
-import matrix.Assert;
+import matrix4j.core.ArrayUtils;
+import matrix4j.core.Assert;
 
 
 class TestArrayUtils {

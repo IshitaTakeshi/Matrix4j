@@ -1,4 +1,4 @@
-package matrix;
+package matrix4j.core;
 
 
 //This class is accesible from methods in the same package

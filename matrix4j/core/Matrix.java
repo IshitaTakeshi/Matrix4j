@@ -1,7 +1,7 @@
-package matrix;
+package matrix4j.core;
 
-import matrix.ArrayUtils;
-import matrix.Vector;
+import matrix4j.core.ArrayUtils;
+import matrix4j.core.Vector;
 import java.util.Arrays;
 
 
@@ -22,6 +22,16 @@ public class Matrix {
 
     //create an empty matrix
     public Matrix(int nRows, int nColumns) {
+        if(nRows <= 0) {
+            throw new IllegalArgumentException(
+                "The number of rows must be larger than 0");
+        }
+
+        if(nColumns <= 0) {
+            throw new IllegalArgumentException(
+                "The number of columns must be larger than 0");
+        }
+
         this.matrix = new Vector[nRows];
         for(int i = 0; i < nRows; i++) {
             this.matrix[i] = new Vector(nColumns);
@@ -190,7 +200,6 @@ public class Matrix {
         return new Vector(column, false);
     }
 
-    //if
     public boolean equals(Matrix another) {
         int nRows = this.nRows();
         if(nRows != another.nRows()) {

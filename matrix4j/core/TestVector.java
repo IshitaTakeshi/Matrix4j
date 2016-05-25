@@ -1,9 +1,9 @@
-package matrix;
+package matrix4j.core;
 
-import matrix.Vector;
-import matrix.Assert;
-import matrix.Array;
-import matrix.Math;
+import matrix4j.core.Vector;
+import matrix4j.core.Assert;
+import matrix4j.core.Array;
+import matrix4j.core.Math;
 
 
 class TestVector {
@@ -249,6 +249,14 @@ class TestVector {
         Assert.assertTrue(S.equals(T));
     }
 
+    static void testOnes() {
+        int N = 5;
+        Vector ones = Math.ones(N);
+        for(int i = 0; i < N; i++) {
+            Assert.assertTrue(ones.get(i) == 1);
+        }
+    }
+
     public static void main(String[] args) {
         testEquals();
         testCopy();
@@ -268,5 +276,6 @@ class TestVector {
         testProduct();
         testSubtract();
         testDivideByScalar();
+        testOnes();
     }
 }

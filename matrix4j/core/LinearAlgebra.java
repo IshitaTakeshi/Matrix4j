@@ -1,5 +1,5 @@
-package matrix;
-import matrix.Format;
+package matrix4j.core;
+import matrix4j.core.Format;
 
 
 //exhibit ith row and jth column of x as x[i, j] in comments

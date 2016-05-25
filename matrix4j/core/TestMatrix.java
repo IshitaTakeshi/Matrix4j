@@ -1,7 +1,7 @@
-package matrix;
+package matrix4j.core;
 
-import matrix.Matrix;
-import matrix.Assert;
+import matrix4j.core.Matrix;
+import matrix4j.core.Assert;
 import java.util.Arrays;
 
 
