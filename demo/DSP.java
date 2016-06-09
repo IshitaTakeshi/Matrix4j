@@ -41,6 +41,12 @@ public class DSP {
     }
 
     public static void main(String args[]) {
+        if(args.length == 0) {
+            System.out.println("DSP2-2 2016 5J02 IshitaTakeshi");
+            System.out.println("Usage: \t$java -cp ..:. DSP samp.bmp");
+            return;
+        }
+
         String filename = args[0];
         Image image = load(filename);
         Image ycbcr = RGB2YCbCr.convert(image);

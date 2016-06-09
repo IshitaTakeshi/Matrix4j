@@ -39,8 +39,17 @@ class TestDCT {
         System.out.println(r + "\n");
     }
 
+    public static void testOrthogonal() {
+        DCTMatrix c = new DCTMatrix(4);
+        System.out.println("DCT Matrix C:\n" + c + "\n");
+
+        Matrix p = Math.product(c.T(), c);
+        System.out.println("C^T \\dot C:\n" + p + "\n");
+    }
+
     public static void main(String[] args) {
         testDCTMatrix();
         test2dDCT();
+        testOrthogonal();
     }
 }
