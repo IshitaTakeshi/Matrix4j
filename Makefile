@@ -5,16 +5,18 @@ JAVA = java
 .SUFFIXES: .java .class
 
 CLASSES = \
-	    matrix/ArrayUtils.java \
-	    matrix/Assert.java \
-	    matrix/LinearAlgebra.java \
-        matrix/Math.java \
-        matrix/Matrix.java \
-        matrix/TestArrayUtils.java \
-        matrix/TestLinearAlgebra.java \
-        matrix/TestMatrix.java \
-        matrix/TestVector.java \
-        matrix/Vector.java
+	    matrix4j/core/ArrayUtils.java \
+	    matrix4j/core/Assert.java \
+	    matrix4j/core/LinearAlgebra.java \
+        matrix4j/core/Math.java \
+        matrix4j/core/Matrix.java \
+        matrix4j/core/TestArrayUtils.java \
+        matrix4j/core/TestLinearAlgebra.java \
+        matrix4j/core/TestMatrix.java \
+        matrix4j/core/TestVector.java \
+        matrix4j/core/Vector.java \
+        matrix4j/core/VectorIO.java \
+        matrix4j/core/TestVectorIO.java
 
 default: all
 
@@ -22,9 +24,10 @@ all:
 	$(JC) $(JFLAGS) $(CLASSES)
 
 test:
-	$(JAVA) matrix.TestMatrix
-	$(JAVA) matrix.TestVector
-	$(JAVA) matrix.TestArrayUtils
+	$(JAVA) matrix4j.core.TestMatrix
+	$(JAVA) matrix4j.core.TestVector
+	$(JAVA) matrix4j.core.TestArrayUtils
+	$(JAVA) matrix4j.core.TestVectorIO
 
 clean:
-	rm matrix/*.class
+	rm matrix4j/core/*.class
