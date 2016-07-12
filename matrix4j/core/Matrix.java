@@ -129,7 +129,7 @@ public class Matrix {
     }
 
     //transpose of a matrix M can be written as M.T()
-    //like a handwritten equasion
+    //like handwritten equasions
     public Matrix T() {
         int nRows = this.nRows();
         int nColumns = this.nColumns();
@@ -142,6 +142,14 @@ public class Matrix {
             }
         }
         return t;
+    }
+
+    public Matrix abs() {
+        Matrix m = new Matrix(this.nRows(), this.nColumns());
+        for(int i = 0; i < this.nRows(); i++) {
+            m.setRow(i, this.row(i).abs());
+        }
+        return m;
     }
 
     public double sum() {

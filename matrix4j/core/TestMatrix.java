@@ -128,6 +128,15 @@ class TestMatrix {
         Assert.assertTrue(A.T().equals(T));
     }
 
+    static void testAbs() {
+        double[][] t = {
+            {1, 2, 4},
+            {3, 1, 2}
+        };
+        Matrix T = new Matrix(t);
+        Assert.assertTrue(C.abs().equals(T));
+    }
+
     static void testSum() {
         Assert.assertTrue(A.sum() == 21);
         Assert.assertTrue(D.sum() == 9);
@@ -302,6 +311,7 @@ class TestMatrix {
         testSet();
         testToString();
         testT();
+        testAbs();
         testSum();
         testAdd();
         testSubtract();

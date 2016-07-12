@@ -83,6 +83,10 @@ public class Math {
         return A.sum();
     }
 
+    public static double norm(Vector A) {
+        return java.lang.Math.sqrt(sum(multiply(A, A)));
+    }
+
     //returns a vector of given length, filled with ones
     public static Vector ones(int length) {
         double[] ones = new double[length];
@@ -144,6 +148,24 @@ public class Math {
         return product;
     }
 
+    public static Vector product(Vector v, Matrix M) {
+        if(M.nRows() != v.length()) {
+            throw new IllegalArgumentException();
+        }
+        Matrix X = new Matrix(1, v.length());
+        X.setRow(0, v);
+        return product(X, M).row(0);
+    }
+
+    public static Vector product(Matrix M, Vector v) {
+        if(M.nColumns() != v.length()) {
+            throw new IllegalArgumentException();
+        }
+        Matrix X = new Matrix(v.length(), 1);
+        X.setColumn(0, v);
+        return product(M, X).column(0);
+    }
+
     //compute matrix multiplication
     public static Matrix product(Matrix A, Matrix B) {
         if(A.nColumns() != B.nRows()) {
@@ -172,6 +194,10 @@ public class Math {
     //Division requires an inverse matrix
     //public static Matrix divide(Matrix B) {
     //}
+
+    public static Matrix abs(Matrix A) {
+        return A.abs();
+    }
 
     public static double sum(Matrix A) {
         return A.sum();
