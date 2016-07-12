@@ -16,7 +16,10 @@ CLASSES = \
         matrix4j/core/TestVector.java \
         matrix4j/core/Vector.java \
         matrix4j/core/VectorIO.java \
-        matrix4j/core/TestVectorIO.java
+        matrix4j/core/TestVectorIO.java \
+        matrix4j/core/RandomArray.java \
+        matrix4j/linalg/Eigen.java \
+        matrix4j/linalg/TestEigen.java
 
 default: all
 
@@ -28,6 +31,7 @@ test:
 	$(JAVA) matrix4j.core.TestVector
 	$(JAVA) matrix4j.core.TestArrayUtils
 	$(JAVA) matrix4j.core.TestVectorIO
+	$(JAVA) matrix4j.linalg.TestEigen
 
 clean:
 	rm matrix4j/core/*.class
