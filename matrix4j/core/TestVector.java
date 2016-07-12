@@ -225,6 +225,11 @@ class TestVector {
         Assert.assertTrue(Math.sum(D) == 4);
     }
 
+    static void testNorm() {
+        Assert.assertTrue(Math.norm(new Vector(new double[]{3, 4})) == 5);
+        Assert.assertTrue(Math.norm(new Vector(new double[]{1, 0, 0})) == 1);
+    }
+
     static void testProduct() {
         Assert.assertTrue(Math.product(A, C) == 7);
 
@@ -270,9 +275,10 @@ class TestVector {
         testMultiplyElementWise();
         testMax();
         testArgmax();
-        testSum();
         testAbs();
         testSlice();
+        testSum();
+        testNorm();
         testProduct();
         testSubtract();
         testDivideByScalar();
