@@ -1,12 +1,17 @@
 package matrix4j.core;
+
 import matrix4j.core.VectorIO;
+import matrix4j.core.Assert;
 
 
 public class TestVectorIO {
     static void testLoad() {
         String filename = "testfiles/vector_src.txt";
         Vector v = VectorIO.load(filename);
-        System.out.println(v);
+        Vector u = new Vector(new double[]{
+            1, 0, 6, 1, 9, 8, 2, 1, 6, 7
+        });
+        Assert.assertTrue(v.equals(u));
     }
 
     static void testSave() {
