@@ -29,13 +29,20 @@ class TestDCT {
     }
 
     static void test2dDCT() {
+        //Matrix m = new Matrix(new double[][]{
+        //    {1, 1, 1, 1},
+        //    {2, 1, 2, 1},
+        //    {3, 1, 3, 1},
+        //    {4, 1, 4, 1},
+        //});
         Matrix m = new Matrix(new double[][]{
-            {1, 1, 1, 1},
-            {2, 1, 2, 1},
-            {3, 1, 3, 1},
-            {4, 1, 4, 1},
+            {1, 2, 0},
+            {1, 0, 0},
+            {0, 0, 0},
         });
         Matrix r = DCT.dct(m);
+
+        System.out.println("2dDCT\n");
         System.out.println(r + "\n");
     }
 

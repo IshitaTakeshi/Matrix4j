@@ -26,7 +26,7 @@ public class DCT {
 
         int N = m.nRows();
         Matrix c = new DCTMatrix(N);
-        return product(product(c, m), c.T());
+        return product(product(c.T(), m), c);
     }
 }
 
